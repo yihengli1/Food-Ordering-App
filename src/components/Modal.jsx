@@ -1,7 +1,7 @@
-export default function Modal() {
+export default function Modal({ text }) {
   return (
-    <dialog>
-      <p> Help!</p>
+    <dialog ref={ref} className="modal" open>
+      <p> {text} </p>
     </dialog>
   );
 }
