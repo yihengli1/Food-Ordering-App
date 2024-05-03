@@ -1,7 +1,7 @@
 import { CartContext } from "../store/cart-context";
 import { useContext } from "react";
 
-export default function Header() {
+export default function Header({ handleShopping }) {
   const { items } = useContext(CartContext);
 
   return (
@@ -10,7 +10,7 @@ export default function Header() {
         <img src="logo.jpg"></img>
         ReactFood
       </h1>
-      <button className="button">
+      <button className="button" onClick={handleShopping}>
         {items ? `Cart(${items.length})` : "Cart"}
       </button>
     </div>
