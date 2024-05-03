@@ -10,8 +10,10 @@ export default function Header({ handleShopping }) {
         <img src="logo.jpg"></img>
         ReactFood
       </h1>
-      <button className="button" onClick={handleShopping}>
-        {items ? `Cart(${items.length})` : "Cart"}
+      <button className="button" onClick={() => handleShopping(1)}>
+        {items.length
+          ? `Cart(${items.reduce((acc, item) => acc + item.quantity, 0)})`
+          : "Cart"}
       </button>
     </div>
   );
