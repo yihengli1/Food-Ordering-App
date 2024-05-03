@@ -2,14 +2,8 @@ import { CartContext } from "../store/cart-context";
 import Item from "./Item";
 import { useContext } from "react";
 
-export default function ShowCart({ toggleModal, closeMenu }) {
+export default function ShowCart({ toggleModal, closeMenu, quantityChange }) {
   const { items } = useContext(CartContext);
-
-  function quantityChange(sign, id) {
-    if (sign === 1) {
-    } else {
-    }
-  }
 
   const calculatedTotal = items.length
     ? items.reduce((acc, item) => acc + item.price * item.quantity, 0)

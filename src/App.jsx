@@ -70,6 +70,24 @@ function App() {
     firstCart.current.showModal();
   }
 
+  function quantityChange(sign, id) {
+    setItemsSelected((prev) => {
+      const index = itemsSelected.findIndex((item) => item.id === id);
+      const temp = [...prev];
+      if (sign === 1) {
+        temp[index].quantity++;
+        return temp;
+      } else {
+        if (temp[index].quantity == 1) {
+          return temp.filter((item) => item.id !== id);
+        } else {
+          temp[index].quantity--;
+          return temp;
+        }
+      }
+    });
+  }
+
   const cartCtx = {
     items: itemsSelected,
   };
@@ -84,7 +102,11 @@ function App() {
       {/* Cart */}
       <Modal ref={firstCart} onClose={handleClose}>
         {shopping === 1 ? (
-          <ShowCart closeMenu={handleClose} toggleModal={handleShopping} />
+          <ShowCart
+            closeMenu={handleClose}
+            toggleModal={handleShopping}
+            quantityChange={quantityChange}
+          />
         ) : null}
         {shopping === 2 ? (
           <SecondCart closeMenu={handleClose} toggleModal={handleShopping} />

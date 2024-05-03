@@ -130,7 +130,7 @@ h1 {
 
 .modal-actions .text-button:hover,
 .modal-actions .text-button:active {
-  color: #312c1d;
+  color: #ffab04;
 }
 
 .cart-total {
@@ -179,6 +179,11 @@ h1 {
   color: #ffab04;
 }
 
+.margin {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .control {
   margin: 0.5rem 0;
   display: flex;
@@ -203,6 +208,7 @@ h1 {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+  margin-bottom: 0.3rem;
 }
 
 .button {
