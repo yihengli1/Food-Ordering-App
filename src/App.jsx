@@ -6,6 +6,7 @@ import { CartContext } from "./store/cart-context";
 import ShowCart from "./components/ShowCart";
 import ErrorMsg from "./components/ErrorMsg";
 import SecondCart from "./components/SecondCart";
+import Success from "./components/Success";
 
 function App() {
   const [error, setError] = useState("");
@@ -65,9 +66,16 @@ function App() {
     firstCart.current.close();
   }
 
-  function handleShopping(next) {
-    setShopping(next);
-    firstCart.current.showModal();
+  function handleShopping(next, cond) {
+    if (cond) {
+      setError("You have no items added to cart!");
+      errorDialog.current.showModal();
+      firstCart.current.close();
+      setShopping(0);
+    } else {
+      setShopping(next);
+      firstCart.current.showModal();
+    }
   }
 
   function quantityChange(sign, id) {
@@ -111,6 +119,7 @@ function App() {
         {shopping === 2 ? (
           <SecondCart closeMenu={handleClose} toggleModal={handleShopping} />
         ) : null}
+        {shopping === 3 ? <Success /> : null}
       </Modal>
       {/* Meals */}
       {isFetching ? (

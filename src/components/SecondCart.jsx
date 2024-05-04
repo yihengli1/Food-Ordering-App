@@ -1,8 +1,26 @@
-export default function SecondCart({ price }) {
+import { useContext } from "react";
+import { CartContext } from "../store/cart-context";
+
+export default function SecondCart({ price, closeMenu, toggleModal }) {
+  const { items } = useContext(CartContext);
+  const calculatedTotal = items.length
+    ? items.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    : 0;
+
+  function onSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log(data);
+
+    toggleModal(3);
+  }
+
   return (
-    <div className="control">
+    <form className="control" onSubmit={onSubmit}>
       <h2 className="margin"> Checkout</h2>
-      <p>Total Amount: ${price}</p>
+      <p>Total Amount: ${calculatedTotal}</p>
       <div>
         <div className="control-row">
           <div>
@@ -12,7 +30,7 @@ export default function SecondCart({ price }) {
         </div>
         <div className="control-row">
           <div>
-            <label>E-Mail Address</label>
+            <label>Email</label>
             <input />
           </div>
         </div>
@@ -34,9 +52,13 @@ export default function SecondCart({ price }) {
         </div>
       </div>
       <div className="modal-actions">
-        <button className="text-button">Close</button>
-        <button className="button">Submit Order</button>
+        <button className="text-button" onClick={closeMenu} type="button">
+          Close
+        </button>
+        <button className="button" type="submit">
+          Submit Order
+        </button>
       </div>
-    </div>
+    </form>
   );
 }

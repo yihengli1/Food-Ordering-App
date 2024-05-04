@@ -34,7 +34,10 @@ export default function ShowCart({ toggleModal, closeMenu, quantityChange }) {
         <button className="text-button" onClick={closeMenu}>
           Close
         </button>
-        <button className="button" onClick={() => toggleModal(2)}>
+        <button
+          className="button"
+          onClick={() => toggleModal(2, items.length == 0)}
+        >
           Go to Checkout
         </button>
       </div>
