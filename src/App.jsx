@@ -103,6 +103,13 @@ function App() {
     });
   }
 
+  function timer() {
+    setTimeout(() => {
+      firstCart.current.close();
+      setShopping(0);
+    }, 2500);
+  }
+
   const cartCtx = {
     items: itemsSelected,
   };
@@ -130,7 +137,7 @@ function App() {
             openError={openError}
           />
         ) : null}
-        {shopping === 3 ? <Success /> : null}
+        {shopping === 3 ? <Success timer={timer} /> : null}
       </Modal>
       {/* Meals */}
       {isFetching ? (

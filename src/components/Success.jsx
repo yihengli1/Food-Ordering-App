@@ -1,4 +1,6 @@
-export default function Success() {
+export default function Success({ timer }) {
+  timer();
+
   return (
     <>
       <h2>Success</h2>
