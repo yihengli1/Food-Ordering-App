@@ -61,6 +61,13 @@ function App() {
     errorDialog.current.close();
   }
 
+  function openError(msg) {
+    setError(msg);
+    errorDialog.current.showModal();
+    firstCart.current.close();
+    setShopping(0);
+  }
+
   function handleClose() {
     setShopping(0);
     firstCart.current.close();
@@ -117,7 +124,11 @@ function App() {
           />
         ) : null}
         {shopping === 2 ? (
-          <SecondCart closeMenu={handleClose} toggleModal={handleShopping} />
+          <SecondCart
+            closeMenu={handleClose}
+            toggleModal={handleShopping}
+            openError={openError}
+          />
         ) : null}
         {shopping === 3 ? <Success /> : null}
       </Modal>
