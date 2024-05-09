@@ -1,5 +1,3 @@
-import { add } from "three/examples/jsm/libs/tween.module.js";
-
 export default function Meals({
   image,
   name,
